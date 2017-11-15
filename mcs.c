@@ -4,11 +4,12 @@
 
 #include "mpi.h"
 #include "random.h"
+#include "distributions.h"
 
  
 int main(int argc, char* argv[])
 {
-    int number_of_sims_per_process = 1000000;
+    int number_of_sims_per_process = 10000000;
     int process_id;                       
     double load,resistance;
     int isim;
@@ -21,7 +22,7 @@ int main(int argc, char* argv[])
     double mean_load = 30.0;
     double sigma_load = 3.0;
     
-    double mean_resistance = 30.0;
+    double mean_resistance = 45.0;
     double sigma_resistance = 3.0;
 
     MPI_Init(&argc, &argv);         
@@ -29,6 +30,10 @@ int main(int argc, char* argv[])
     
     struct vector *load_samples;
     struct vector *resistance_samples;
+
+    double mean_g = 0.0;
+    double sigma_g = 0.0;
+    double beta = 0.0;
 
     if(process_id != 0)
     {
@@ -69,7 +74,14 @@ int main(int argc, char* argv[])
     if (process_id == 0)                     
     {
         failure_probability = ((double)total_number_of_failures/(double)total_number_of_simulations);
-        printf("Pf = %e\n", failure_probability);
+        mean_g = mean_resistance - mean_load;
+        sigma_g = sqrt(pow(sigma_load,2.0) + pow(sigma_resistance,2.0));
+        beta = mean_g / sigma_g;
+
+        printf("Pf (mcs)   = %3.3e\n", failure_probability);
+        printf("Beta       = %3.3f\n", beta);
+        printf("Pf (exact) = %3.3e\n",normal_cdf(mean_g, sigma_g, 0.0));
+
     }
  
     MPI_Finalize();
