@@ -12,11 +12,11 @@ int main(int argc, char* argv[])
     int process_id;                       
     double load,resistance;
     int isim;
-    int number_of_fails=0;
-    double g;                       
-    double failure_probability;     
-    int total_number_of_failures;   
-    int total_number_of_simulations;
+    int number_of_fails = 0;
+    double g = 0.0;                       
+    double failure_probability = 0.0;     
+    int total_number_of_failures = 0;   
+    int total_number_of_simulations = 0;
  
     double mean_load = 30.0;
     double sigma_load = 3.0;
@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
             
             if (g <= 0)
             {
-                ++number_of_fails;                
+                number_of_fails++;                
             }
         }
     }
