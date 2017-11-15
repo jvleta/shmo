@@ -1,1 +1,1 @@
-(R)eliability (E)ngineering Programs in (C)
+(R)eliability (E)ngineering (C)omputations
