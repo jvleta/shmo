@@ -1,6 +1,9 @@
 #include <iostream>
 
+#include "matplotlibcpp.h"
 #include "shmosolver.h"
+
+namespace plt = matplotlibcpp;
 
 int main() {
   std::cout << "SHMO!\n";
@@ -17,4 +20,6 @@ int main() {
   shmo::ShmoResults results = shmo::solve(input);
 
   std::cout << results;
+  plt::plot(results.time, results.position);
+  plt::show();
 }
