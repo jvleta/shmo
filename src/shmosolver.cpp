@@ -1,4 +1,5 @@
 #include "shmosolver.h"
+#include <cmath>
 
 namespace shmo {
 
