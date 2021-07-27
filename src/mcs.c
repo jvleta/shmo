@@ -14,15 +14,15 @@ int main(int argc, char *argv[]) {
   double g = 0.0;
   double failure_probability = 0.0;
   int total_number_of_failures = 0;
- 
+
   double mean_load = 30.0;
   double sigma_load = 3.0;
 
   double mean_resistance = 45.0;
   double sigma_resistance = 3.0;
 
-  struct vector *load_samples;
-  struct vector *resistance_samples;
+  double *load_samples = NULL;
+  double *resistance_samples = NULL;
 
   double mean_g = 0.0;
   double sigma_g = 0.0;
@@ -34,8 +34,8 @@ int main(int argc, char *argv[]) {
                                          number_of_simulations);
 
   for (isim = 0; isim < number_of_simulations; isim++) {
-    load = load_samples->elements[isim];
-    resistance = resistance_samples->elements[isim];
+    load = load_samples[isim];
+    resistance = resistance_samples[isim];
     g = resistance - load;
 
     if (g <= 0) {
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
   }
 
   failure_probability =
-      ((double)number_of_fails) / ((double) number_of_simulations);
+      ((double)number_of_fails) / ((double)number_of_simulations);
   mean_g = mean_resistance - mean_load;
   sigma_g = sqrt(pow(sigma_load, 2.0) + pow(sigma_resistance, 2.0));
   beta = mean_g / sigma_g;
