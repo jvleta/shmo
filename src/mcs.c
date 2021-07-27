@@ -5,8 +5,8 @@
 #include "distributions.h"
 #include "random.h"
 
-int main(int argc, char *argv[]) {
-  int number_of_simulations = 10000000;
+void run_example() {
+  int number_of_simulations = 100000;
   int process_id;
   double load, resistance;
   int isim;
@@ -52,6 +52,4 @@ int main(int argc, char *argv[]) {
   printf("Pf (mcs)   = %3.3e\n", failure_probability);
   printf("Beta       = %3.3f\n", beta);
   printf("Pf (exact) = %3.3e\n", normal_cdf(mean_g, sigma_g, 0.0));
-
-  return 0;
 }
