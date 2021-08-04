@@ -4,9 +4,10 @@
 
 #include "distributions.h"
 #include "random.h"
+#include "recdata.h"
 
-int main(int argc, char *argv[]) {
-  int number_of_simulations = 10000000;
+int run_mcs(const struct RECData *input) {
+  int number_of_simulations = 1000000;
   int process_id;
   double load, resistance;
   int isim;
@@ -14,19 +15,15 @@ int main(int argc, char *argv[]) {
   double g = 0.0;
   double failure_probability = 0.0;
   int total_number_of_failures = 0;
- 
-  double mean_load = 30.0;
-  double sigma_load = 3.0;
 
-  double mean_resistance = 45.0;
-  double sigma_resistance = 3.0;
+  double mean_load = input->mean_load;
+  double sigma_load = input->sigma_load;
+
+  double mean_resistance = input->mean_resistance;
+  double sigma_resistance = input->sigma_resistance;
 
   struct vector *load_samples;
   struct vector *resistance_samples;
-
-  double mean_g = 0.0;
-  double sigma_g = 0.0;
-  double beta = 0.0;
 
   load_samples =
       normal_rv_samples(mean_load, sigma_load, number_of_simulations);
@@ -44,14 +41,9 @@ int main(int argc, char *argv[]) {
   }
 
   failure_probability =
-      ((double)number_of_fails) / ((double) number_of_simulations);
-  mean_g = mean_resistance - mean_load;
-  sigma_g = sqrt(pow(sigma_load, 2.0) + pow(sigma_resistance, 2.0));
-  beta = mean_g / sigma_g;
+      ((double)number_of_fails) / ((double)number_of_simulations);
 
   printf("Pf (mcs)   = %3.3e\n", failure_probability);
-  printf("Beta       = %3.3f\n", beta);
-  printf("Pf (exact) = %3.3e\n", normal_cdf(mean_g, sigma_g, 0.0));
 
   return 0;
 }

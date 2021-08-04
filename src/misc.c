@@ -1,8 +1,6 @@
 #include <math.h> 
 #include "misc.h"
 
-
-
 double erfinv(double x)
 {
     double tt1, tt2, lnx, sgn;
