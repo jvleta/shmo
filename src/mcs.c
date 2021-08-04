@@ -22,8 +22,8 @@ int run_mcs(const struct RECData *input) {
   double mean_resistance = input->mean_resistance;
   double sigma_resistance = input->sigma_resistance;
 
-  struct vector *load_samples;
-  struct vector *resistance_samples;
+  double *load_samples = NULL;
+  double *resistance_samples = NULL;
 
   load_samples =
       normal_rv_samples(mean_load, sigma_load, number_of_simulations);
@@ -31,8 +31,8 @@ int run_mcs(const struct RECData *input) {
                                          number_of_simulations);
 
   for (isim = 0; isim < number_of_simulations; isim++) {
-    load = load_samples->elements[isim];
-    resistance = resistance_samples->elements[isim];
+    load = load_samples[isim];
+    resistance = resistance_samples[isim];
     g = resistance - load;
 
     if (g <= 0) {

@@ -11,11 +11,11 @@ typedef struct random_variable
     double sigma; 
 } random_variable;
 
-struct vector *uniform_probability_samples(int nsamples);
-struct vector *uniform_rv_samples(double xmin, double xmax, int nsamples);
-struct vector *exponential_rv_samples(double lambda, int nsamples);
-struct vector *weibull_rv_samples(double alpha, double beta, int nsamples);
-struct vector *normal_rv_samples(double mu, double sigma, int nsamples);
-struct vector *lognormal_rv_samples(double mu, double sigma, int nsamples);
+double *uniform_probability_samples(int nsamples);
+double *uniform_rv_samples(double xmin, double xmax, int nsamples);
+double *exponential_rv_samples(double lambda, int nsamples);
+double *weibull_rv_samples(double alpha, double beta, int nsamples);
+double *normal_rv_samples(double mu, double sigma, int nsamples);
+double *lognormal_rv_samples(double mu, double sigma, int nsamples);
 
 #endif
