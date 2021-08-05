@@ -14,8 +14,8 @@ int main() {
   input.mean_resistance = mean_resistance;
   input.sigma_resistance = sigma_resistance;
 
-  run_mcs(&input);
-  run_form(&input);
-  
+  run_mcs(input);
+  run_form(input);
+
   return 0;
 }

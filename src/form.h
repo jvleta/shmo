@@ -1,8 +1,5 @@
-#ifndef FORM_H_
-#define FORM_H_
+#pragma once
 
 #include "recdata.h"
 
-int run_form(const struct RECData *input);
-
-#endif
+int run_form(const RECData &input);

@@ -1,5 +1,4 @@
-#ifndef DISTRIBUTION_H_
-#define DISTRIBUTION_H_
+#pragma once
 
 double normal_pdf(double mu, double sigma, double x);
 double normal_cdf(double mu, double sigma, double x);
@@ -20,5 +19,3 @@ double gumbel_cdf_inverse(double alpha, double beta, double p);
 double weibull_pdf(double alpha, double beta, double x);
 double weibull_cdf(double alpha, double beta, double x);
 double weibull_cdf_inverse(double alpha, double beta, double p);
-
-#endif

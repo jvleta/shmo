@@ -1,21 +1,17 @@
-#ifndef RANDOM_H_
-#define RANDOM_H_
+#pragma once
 
 #include "arrays.h"
 
-typedef struct random_variable
-{
-    char *distribution_type;
-    double mu;
-    double cv;
-    double sigma; 
-} random_variable;
+struct random_variable {
+  char *distribution_type;
+  double mu;
+  double cv;
+  double sigma;
+};
 
-double *uniform_probability_samples(int nsamples);
-double *uniform_rv_samples(double xmin, double xmax, int nsamples);
-double *exponential_rv_samples(double lambda, int nsamples);
-double *weibull_rv_samples(double alpha, double beta, int nsamples);
-double *normal_rv_samples(double mu, double sigma, int nsamples);
-double *lognormal_rv_samples(double mu, double sigma, int nsamples);
-
-#endif
+std::vector<double> uniform_probability_samples(int nsamples);
+std::vector<double> uniform_rv_samples(double xmin, double xmax, int nsamples);
+std::vector<double> exponential_rv_samples(double lambda, int nsamples);
+std::vector<double> weibull_rv_samples(double alpha, double beta, int nsamples);
+std::vector<double> normal_rv_samples(double mu, double sigma, int nsamples);
+std::vector<double> lognormal_rv_samples(double mu, double sigma, int nsamples);

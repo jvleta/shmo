@@ -6,7 +6,7 @@
 #include "random.h"
 #include "recdata.h"
 
-int run_mcs(const struct RECData *input) {
+int run_mcs(const RECData &input) {
   int number_of_simulations = 1000000;
   int process_id;
   double load, resistance;
@@ -16,19 +16,16 @@ int run_mcs(const struct RECData *input) {
   double failure_probability = 0.0;
   int total_number_of_failures = 0;
 
-  double mean_load = input->mean_load;
-  double sigma_load = input->sigma_load;
+  double mean_load = input.mean_load;
+  double sigma_load = input.sigma_load;
 
-  double mean_resistance = input->mean_resistance;
-  double sigma_resistance = input->sigma_resistance;
+  double mean_resistance = input.mean_resistance;
+  double sigma_resistance = input.sigma_resistance;
 
-  double *load_samples = NULL;
-  double *resistance_samples = NULL;
-
-  load_samples =
+  auto load_samples =
       normal_rv_samples(mean_load, sigma_load, number_of_simulations);
-  resistance_samples = normal_rv_samples(mean_resistance, sigma_resistance,
-                                         number_of_simulations);
+  auto resistance_samples = normal_rv_samples(mean_resistance, sigma_resistance,
+                                              number_of_simulations);
 
   for (isim = 0; isim < number_of_simulations; isim++) {
     load = load_samples[isim];

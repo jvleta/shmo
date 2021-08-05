@@ -1,8 +1,5 @@
-#ifndef MCS_H_
-#define MCS_H_
+#pragma once
 
 #include "recdata.h"
 
-int run_mcs(const struct RECData *input);
-
-#endif
+int run_mcs(const RECData &input);
